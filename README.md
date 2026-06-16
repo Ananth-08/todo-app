@@ -94,3 +94,120 @@ todos
 
 The Todo model will be used to generate the database table structure automatically through SQLAlchemy.
 
+4. Pydantic Schema Validation
+Completed
+Implemented request and response validation using Pydantic.
+
+Schemas Created
+TodoCreate
+Used while creating a new todo.
+
+{
+  "title": "Learn Docker",
+  "completed": false
+}
+TodoUpdate
+Used while updating an existing todo.
+
+TodoResponse
+Used for API responses.
+
+5. CRUD Operations
+Completed
+All CRUD functionalities have been implemented.
+
+Create Todo
+POST /todos
+Creates a new todo item.
+
+Get All Todos
+GET /todos
+Returns all todo items.
+
+Get Todo By ID
+GET /todos/{todo_id}
+Returns a specific todo.
+
+Update Todo
+PUT /todos/{todo_id}
+Updates an existing todo.
+
+Delete Todo
+DELETE /todos/{todo_id}
+Deletes a todo item.
+
+6. Error Handling
+Completed
+Implemented FastAPI HTTP exception handling.
+
+Examples
+raise HTTPException(
+    status_code=404,
+    detail="Todo not found"
+)
+Handled Scenarios
+Todo not found
+
+Invalid Todo ID
+
+Validation errors
+
+7. API Documentation
+Completed
+FastAPI Swagger UI is available.
+
+Endpoints
+http://localhost:8000/docs
+Provides:
+
+Interactive API testing
+
+Request validation
+
+Response documentation
+
+8. Dockerization
+Completed
+The application has been containerized using Docker.
+
+Files Added
+Dockerfile
+Responsible for:
+
+Creating Docker image
+
+Installing dependencies
+
+Running FastAPI application
+
+.dockerignore
+Used to exclude:
+
+venv
+__pycache__
+.git
+todo.db
+Docker Commands Used
+Build Image
+docker build -t todo-api .
+Run Container
+docker run -p 8000:8000 todo-api
+Result
+Application successfully runs inside a Docker container.
+
+9. Git & GitHub Workflow
+Completed
+Connected local repository to remote GitHub repository
+
+Fetched remote branches
+
+Switched to Feature1 branch
+
+Committed project changes
+
+Prepared for Pull Request workflow
+
+Branches
+main
+Feature1
+Feature2
