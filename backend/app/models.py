@@ -1,7 +1,5 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from datetime import datetime
-
-from .database import Base
+from sqlalchemy import Column, Integer, String, Boolean
+from app.database import Base
 
 
 class Todo(Base):
@@ -9,5 +7,4 @@ class Todo(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
-    status = Column(String, default="pending")
-    created_at = Column(DateTime, default=datetime.utcnow)
+    completed = Column(Boolean, default=False)
