@@ -2,8 +2,13 @@ from sqlalchemy.orm import Session
 from app.models import Todo
 
 
-def get_all_todos(db: Session):
-    return db.query(Todo).all()
+def get_todos(db: Session, completed: bool | None = None):
+    query = db.query(Todo)
+
+    if completed is not None:
+        query = query.filter(Todo.completed == completed)
+
+    return query.all()
 
 
 def get_todo_by_id(db: Session, todo_id: int):

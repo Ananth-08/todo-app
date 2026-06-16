@@ -27,9 +27,13 @@ def home():
     response_model=list[TodoResponse]
 )
 def get_todos(
+    completed: bool | None = None,
     db: Session = Depends(get_db)
 ):
-    return crud.get_all_todos(db)
+    return crud.get_todos(
+        db,
+        completed
+    )
 
 
 @app.post(
