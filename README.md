@@ -2,9 +2,11 @@
 
 ## Project Overview
 
-This project is a backend implementation of a Todo Application developed using FastAPI and SQLite. The application will provide CRUD operations and filtering functionality for managing todos.
+This project is a backend implementation of a Todo Application developed using **FastAPI** and **SQLite**. The application provides RESTful APIs for managing todo items with complete CRUD functionality, status-based filtering, validation, error handling, and Docker support.
 
-### Planned Features
+---
+
+## Planned Features
 
 * Create Todo
 * View Todos
@@ -14,11 +16,13 @@ This project is a backend implementation of a Todo Application developed using F
 
 ---
 
-# Progress Completed
+## Progress Completed
 
-## 1. Project Structure Setup
+### 1. Project Structure Setup
 
-The initial backend project structure has been created.
+The initial backend project structure has been successfully created.
+
+#### Project Structure
 
 ```
 todo-app/
@@ -34,45 +38,53 @@ todo-app/
 │   └── venv/
 │
 ├── requirements.txt
-├── DockerFile
+├── Dockerfile
 ├── .gitignore
 └── todo.db
 ```
 
 ---
 
-## 2. Database Configuration
+### 2. Database Configuration
 
-SQLite has been selected as the database for the application.
+SQLite has been selected and configured as the database for the application.
 
-### Purpose
+#### Purpose
 
 The database layer is responsible for:
 
-* Establishing a connection with SQLite.
-* Managing database sessions.
-* Providing a common base class for all database models.
+* Establishing a connection with SQLite
+* Managing database sessions
+* Providing a common base class for database models
+* Supporting automatic table creation through SQLAlchemy
 
-### Database File
+#### Database File
 
 ```
 todo.db
 ```
 
-### Database Components
+#### Database Components Implemented
 
-* Database URL configuration
+* Database URL Configuration
 * SQLAlchemy Engine
 * Session Factory
 * Declarative Base
 
+
 ---
 
-## 3. Todo Data Model Design
+### 3. Todo Data Model Design
 
-The Todo entity structure has been finalized.
+The Todo entity structure has been finalized and implemented.
 
-### Todo Model Fields
+#### Database Table
+
+```
+todos
+```
+
+#### Todo Model Fields
 
 | Field      | Type     | Description                         |
 | ---------- | -------- | ----------------------------------- |
@@ -81,133 +93,211 @@ The Todo entity structure has been finalized.
 | status     | String   | Current status of the todo          |
 | created_at | DateTime | Timestamp when the todo was created |
 
-### Supported Status Values
+#### Supported Status Values
 
-```
-pending
-completed
-```
+* pending
+* completed
 
-### Database Table
+The Todo model is configured using SQLAlchemy and automatically generates the corresponding database table structure.
 
-todos
 
-The Todo model will be used to generate the database table structure automatically through SQLAlchemy.
+---
 
-4. Pydantic Schema Validation
-Completed
-Implemented request and response validation using Pydantic.
+### 4. Pydantic Schema Validation
 
-Schemas Created
-TodoCreate
+Request and response validation has been implemented using Pydantic.
+
+#### Schemas Created
+
+##### TodoCreate
+
 Used while creating a new todo.
 
+```json
 {
   "title": "Learn Docker",
   "completed": false
 }
-TodoUpdate
+```
+
+##### TodoUpdate
+
 Used while updating an existing todo.
 
-TodoResponse
+##### TodoResponse
+
 Used for API responses.
 
-5. CRUD Operations
-Completed
-All CRUD functionalities have been implemented.
 
-Create Todo
+---
+
+### 5. CRUD Operations
+
+All CRUD functionalities have been implemented successfully.
+
+#### Create Todo
+
+```http
 POST /todos
+```
+
 Creates a new todo item.
 
-Get All Todos
+#### Get All Todos
+
+```http
 GET /todos
+```
+
 Returns all todo items.
 
-Get Todo By ID
+#### Get Todo By ID
+
+```http
 GET /todos/{todo_id}
-Returns a specific todo.
+```
 
-Update Todo
+Returns a specific todo item.
+
+#### Update Todo
+
+```http
 PUT /todos/{todo_id}
-Updates an existing todo.
+```
 
-Delete Todo
+Updates an existing todo item.
+
+#### Delete Todo
+
+```http
 DELETE /todos/{todo_id}
+```
+
 Deletes a todo item.
 
-6. Error Handling
-Completed
-Implemented FastAPI HTTP exception handling.
 
-Examples
+---
+
+### 6. Filter Todos by Status
+
+Filtering functionality has been implemented to retrieve todos based on their current status.
+
+#### Supported Filters
+
+```http
+GET /todos?status=pending
+GET /todos?status=completed
+```
+
+
+---
+
+### 7. Error Handling
+
+FastAPI HTTP exception handling has been implemented.
+
+#### Example
+
+```python
 raise HTTPException(
     status_code=404,
     detail="Todo not found"
 )
-Handled Scenarios
-Todo not found
+```
 
-Invalid Todo ID
+#### Handled Scenarios
 
-Validation errors
+* Todo not found
+* Invalid Todo ID
+* Validation errors
+* Bad request handling
 
-7. API Documentation
-Completed
-FastAPI Swagger UI is available.
 
-Endpoints
+---
+
+### 8. API Documentation
+
+FastAPI Swagger UI has been configured and is available for testing.
+
+#### Endpoint
+
+```text
 http://localhost:8000/docs
-Provides:
+```
 
-Interactive API testing
+#### Features
 
-Request validation
+* Interactive API testing
+* Request validation
+* Response documentation
+* Endpoint exploration
 
-Response documentation
 
-8. Dockerization
-Completed
+---
+
+### 9. Dockerization
+
 The application has been containerized using Docker.
 
-Files Added
-Dockerfile
+#### Files Added
+
+##### Dockerfile
+
 Responsible for:
 
-Creating Docker image
+* Creating Docker images
+* Installing dependencies
+* Running the FastAPI application
 
-Installing dependencies
+##### .dockerignore
 
-Running FastAPI application
-
-.dockerignore
 Used to exclude:
 
-venv
-__pycache__
-.git
+```text
+venv/
+__pycache__/
+.git/
 todo.db
-Docker Commands Used
-Build Image
+```
+
+#### Docker Commands
+
+##### Build Image
+
+```bash
 docker build -t todo-api .
-Run Container
+```
+
+##### Run Container
+
+```bash
 docker run -p 8000:8000 todo-api
-Result
-Application successfully runs inside a Docker container.
+```
 
-9. Git & GitHub Workflow
-Completed
-Connected local repository to remote GitHub repository
+#### Result
 
-Fetched remote branches
+The application successfully runs inside a Docker container.
 
-Switched to Feature1 branch
 
-Committed project changes
+---
 
-Prepared for Pull Request workflow
+### 10. Git & GitHub Workflow
 
-Branches
-main
-Feature1
-Feature2
+Version control and collaboration workflow have been completed.
+
+#### Activities Performed
+
+* Connected local repository to remote GitHub repository
+* Fetched remote branches
+* Switched to Feature1 branch
+* Committed project changes
+* Prepared code for Pull Request workflow
+
+#### Branches
+
+* main
+* Feature1
+* Feature2
+
+
+---
